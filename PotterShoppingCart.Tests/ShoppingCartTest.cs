@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace PotterShoppingCart.Tests
 {
     [TestClass]
-    public class ShoppingCart
+    public class ShoppingCartTest
     {
         [TestMethod]
         public void CostCalcaulte_每本一百_如果只有買一本_應支付一百元()

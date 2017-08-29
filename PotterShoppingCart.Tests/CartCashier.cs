@@ -8,7 +8,14 @@ namespace PotterShoppingCart.Tests
     {
         public int GetExpense(List<Book> books)
         {
-            return books.Sum(x => x.Amount) * 100;
+            var groups = books.GroupBy(x => x.Amount).ToDictionary(grouping => grouping.Key, group => group.ToList());
+
+            var cost = groups[1].Count * 100;
+
+            if (groups[1].Count() == 2)
+                cost = Convert.ToInt32(cost * 0.95);
+
+            return cost;
         }
     }
 }

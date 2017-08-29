@@ -25,6 +25,9 @@ namespace PotterShoppingCart.Tests
                 if (count == 2)
                     cost = Convert.ToInt32(cost * 0.95);
 
+                if (count == 3)
+                    cost = Convert.ToInt32(cost * 0.90);
+
                 total += cost;
             }
 

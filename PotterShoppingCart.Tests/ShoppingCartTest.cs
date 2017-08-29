@@ -113,7 +113,7 @@ namespace PotterShoppingCart.Tests
                 new Book{Name="哈利波特5", ISDN="00005", Amount=1},
             };
 
-            int expected = Convert.ToInt32(100 * 3 * 0.9);
+            int expected = Convert.ToInt32(100 * 4 * 0.8);
             var cashier = new CartCashier();
 
             //  ack

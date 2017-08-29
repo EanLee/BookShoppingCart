@@ -1,6 +1,6 @@
 ﻿namespace PotterShoppingCart.Tests
 {
-    internal class Book
+    public class Book
     {
         public string Name { get; set; }
         public string ISDN { get; set; }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace PotterShoppingCart.Tests
@@ -21,9 +20,10 @@ namespace PotterShoppingCart.Tests
             };
 
             int expected = 100;
+            var cashier = new CartCashier();
 
             //  ack
-            int actual = books.GetExpense();
+            int actual = cashier.GetExpense(books);
 
             //  assert
             Assert.AreEqual(expected, actual);

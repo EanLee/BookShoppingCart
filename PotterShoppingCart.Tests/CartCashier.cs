@@ -37,12 +37,12 @@ namespace PotterShoppingCart.Tests
             for (int combinIndex = 0; combinIndex < maxCombinCount; combinIndex++)
             {
                 List<int> bookGroup = new List<int>();
+                var maxCount = countCollection.Count() - combinIndex;
 
                 var filler = countCollection.ToArray();
 
                 for (int element = 0; element < maxCombinCount; element++)
                 {
-                    var maxCount = filler.Length - combinIndex + element;
                     int count = 0;
 
                     for (int i = 0; i < filler.Length; i++)
@@ -56,9 +56,14 @@ namespace PotterShoppingCart.Tests
                             filler[i]--;
                         }
                     }
+
                     bookGroup.Add(count);
 
                 }
+
+                if (bookGroup.Sum() != countCollection.Sum())
+                    continue;
+
                 combinations.Add(bookGroup);
             }
 

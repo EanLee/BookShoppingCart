@@ -31,25 +31,7 @@ namespace PotterShoppingCart.Tests
                 bookGroup.Add(amount);
             }
 
-            double total = 0;
-            foreach (var count in bookGroup)
-            {
-                var cost = _discountRule[count] * 100 * count;
-
-                //if (count == 2)
-                //    cost = Convert.ToInt32(cost * 0.95);
-
-                //if (count == 3)
-                //    cost = Convert.ToInt32(cost * 0.90);
-
-                //if (count == 4)
-                //    cost = Convert.ToInt32(cost * 0.80);
-
-                //if (count == 5)
-                //    cost = Convert.ToInt32(cost * 0.75);
-
-                total += cost;
-            }
+            double total = bookGroup.Sum(count => _discountRule[count] * 100 * count);
 
             return Convert.ToInt32(total);
         }

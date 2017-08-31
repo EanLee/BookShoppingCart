@@ -122,5 +122,28 @@ namespace PotterShoppingCart.Tests
             //  assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void CostCalcaulte_一次買整套5本_打75折()
+        {
+            //  arrange
+            var books = new List<Book>()
+            {
+                new Book{Name="哈利波特1", ISDN="00001", Amount=1},
+                new Book{Name="哈利波特2", ISDN="00002", Amount=1},
+                new Book{Name="哈利波特3", ISDN="00003", Amount=1},
+                new Book{Name="哈利波特4", ISDN="00004", Amount=1},
+                new Book{Name="哈利波特5", ISDN="00005", Amount=1},
+            };
+
+            int expected = Convert.ToInt32(100 * 5 * 0.75);
+            var cashier = new CartCashier();
+
+            //  ack
+            int actual = cashier.GetExpense(books);
+
+            //  assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

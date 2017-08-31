@@ -145,5 +145,28 @@ namespace PotterShoppingCart.Tests
             //  assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void CostCalcaulte_一二集各買了一本_第三集買了兩本_價格應為370()
+        {
+            //  arrange
+            var books = new List<Book>()
+            {
+                new Book{Name="哈利波特1", ISDN="00001", Amount=1},
+                new Book{Name="哈利波特2", ISDN="00002", Amount=1},
+                new Book{Name="哈利波特3", ISDN="00003", Amount=2},
+                new Book{Name="哈利波特4", ISDN="00004", Amount=0},
+                new Book{Name="哈利波特5", ISDN="00005", Amount=0},
+            };
+
+            int expected = Convert.ToInt32(100 * 3 * 0.9 + 100);
+            var cashier = new CartCashier();
+
+            //  ack
+            int actual = cashier.GetExpense(books);
+
+            //  assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

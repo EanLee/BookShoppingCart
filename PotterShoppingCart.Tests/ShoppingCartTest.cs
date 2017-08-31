@@ -193,7 +193,7 @@ namespace PotterShoppingCart.Tests
         }
 
         [TestMethod]
-        public void CostCalcaulte_選便宜的算法_1到3集各買2本_4到5集各買一本_最便宜的格值是640()
+        public void CostCalcaulte_選便宜的算法_1到3集各買2本_4到5集各買一本_最便宜的價格為640()
         {
             //  arrange
             var books = new List<Book>()
@@ -206,6 +206,29 @@ namespace PotterShoppingCart.Tests
             };
 
             int expected = Convert.ToInt32(100 * 4 * 0.8 + 100 * 4 * 0.80);
+            var cashier = new CartCashier();
+
+            //  ack
+            int actual = cashier.GetExpense(books);
+
+            //  assert
+            Assert.AreEqual(expected, actual);
+        }
+           
+        [TestMethod]
+        public void CostCalcaulte_選便宜的算法_1到4集各買2本_5集買一本_價格應為695()
+        {
+            //  arrange
+            var books = new List<Book>()
+            {
+                new Book{Name="哈利波特1", ISDN="00001", Amount=2},
+                new Book{Name="哈利波特2", ISDN="00002", Amount=2},
+                new Book{Name="哈利波特3", ISDN="00003", Amount=2},
+                new Book{Name="哈利波特4", ISDN="00004", Amount=2},
+                new Book{Name="哈利波特5", ISDN="00005", Amount=1},
+            };
+
+            int expected = Convert.ToInt32(100 * 5 * 0.75 + 100 * 4 * 0.80);
             var cashier = new CartCashier();
 
             //  ack

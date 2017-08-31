@@ -39,10 +39,10 @@ namespace PotterShoppingCart.Tests
                 List<int> bookGroup = new List<int>();
 
                 var filler = countCollection.ToArray();
-                var maxCount = filler.Length - combinIndex;
 
                 for (int element = 0; element < maxCombinCount; element++)
                 {
+                    var maxCount = filler.Length - combinIndex + element;
                     int count = 0;
 
                     for (int i = 0; i < filler.Length; i++)

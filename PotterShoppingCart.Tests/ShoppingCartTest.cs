@@ -237,5 +237,28 @@ namespace PotterShoppingCart.Tests
             //  assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void CostCalcaulte_選便宜的算法_當1到3集各買4本_45集買一本_最便宜的價格應為1280()
+        {
+            //  arrange
+            var books = new List<Book>()
+            {
+                new Book{Name="哈利波特1", ISDN="00001", Amount=4},
+                new Book{Name="哈利波特2", ISDN="00002", Amount=4},
+                new Book{Name="哈利波特3", ISDN="00003", Amount=4},
+                new Book{Name="哈利波特4", ISDN="00004", Amount=2},
+                new Book{Name="哈利波特5", ISDN="00005", Amount=2},
+            };
+
+            int expected = Convert.ToInt32(1280);
+            var cashier = new CartCashier();
+
+            //  ack
+            int actual = cashier.GetExpense(books);
+
+            //  assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

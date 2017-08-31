@@ -22,18 +22,47 @@ namespace PotterShoppingCart.Tests
 
         public int GetExpense(List<Book> books)
         {
-            int maxAmount = books.Max(x => x.Amount);
-            List<int> bookGroup = new List<int>();
+            var combination = GetDiscountCombination(books.Select(book => book.Amount));
 
-            for (int i = 1; i <= maxAmount; i++)
+            var cheapest = combination.Select(combin => combin.Sum(count => _discountRule[count] * 100 * count)).Min();
+            return Convert.ToInt32(cheapest);
+        }
+
+        private List<List<int>> GetDiscountCombination(IEnumerable<int> countCollection)
+        {
+            int maxCombinCount = countCollection.Max();
+
+            var combinations = new List<List<int>>();
+
+            for (int combinIndex = 0; combinIndex < maxCombinCount; combinIndex++)
             {
-                int amount = books.Count(x => x.Amount >= i);
-                bookGroup.Add(amount);
+                List<int> bookGroup = new List<int>();
+
+                var filler = countCollection.ToArray();
+                var maxCount = filler.Length - combinIndex;
+
+                for (int element = 0; element < maxCombinCount; element++)
+                {
+                    int count = 0;
+
+                    for (int i = 0; i < filler.Length; i++)
+                    {
+                        if (count == maxCount)
+                            break;
+
+                        if (filler[i] != 0)
+                        {
+                            count++;
+                            filler[i]--;
+                        }
+                    }
+                    bookGroup.Add(count);
+
+                }
+                combinations.Add(bookGroup);
             }
 
-            double total = bookGroup.Sum(count => _discountRule[count] * 100 * count);
-
-            return Convert.ToInt32(total);
+            return combinations;
         }
     }
 }
